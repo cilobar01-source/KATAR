@@ -1,4 +1,49 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Dashboard Warga • Karang Taruna</title><link rel="stylesheet" href="../assets/css/style.css"></head>
-<body><div class="background-bokeh"></div><div class="container fade-in"><h2>Dashboard Warga</h2><p class="note">Halaman ini masih placeholder.</p></div></body></html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anggota • Karang Taruna RT01/RW08</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <div class="background-bokeh"></div>
+  <div id="loading">Memproses...</div>
+  <div class="toast" id="toast"></div>
+
+  <div class="dashboard">
+
+    <div class="card glass">
+      <h3>👥 Dashboard Anggota</h3>
+      <p style="opacity:.8;">Selamat datang di Portal Anggota Karang Taruna RT01/RW08!</p>
+    </div>
+
+    <!-- Pengumuman -->
+    <div class="card glass">
+      <h3>📢 Pengumuman</h3>
+      <div id="anggotaPengumuman"><p>Memuat pengumuman...</p></div>
+    </div>
+
+    <!-- Agenda -->
+    <div class="card glass">
+      <h3>📅 Agenda Kegiatan</h3>
+      <div id="anggotaAgenda"><p>Memuat agenda kegiatan...</p></div>
+    </div>
+
+    <!-- Berita -->
+    <div class="card glass">
+      <h3>📰 Berita Terbaru</h3>
+      <div id="anggotaBerita"><p>Memuat berita...</p></div>
+    </div>
+
+  </div>
+
+  <div class="navbar">
+    <a href="../dashboard/adminsuper.html"><button>👑</button></a>
+    <button class="active">👥</button>
+    <a href="../login/login.html"><button>🚪</button></a>
+  </div>
+
+  <script type="module" src="../assets/js/anggota.js"></script>
+</body>
+</html>
