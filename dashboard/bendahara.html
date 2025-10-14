@@ -1,4 +1,96 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Dashboard Bendahara • Karang Taruna</title><link rel="stylesheet" href="../assets/css/style.css"></head>
-<body><div class="background-bokeh"></div><div class="container fade-in"><h2>Dashboard Bendahara</h2><p class="note">Halaman ini masih placeholder.</p></div></body></html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bendahara • Karang Taruna</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <div class="background-bokeh"></div>
+  <div id="loading">Memproses...</div>
+  <div class="toast" id="toast"></div>
+
+  <div class="dashboard">
+
+    <!-- Header & Ringkasan Saldo -->
+    <div class="card">
+      <h3>💰 Dashboard Bendahara</h3>
+      <div style="display:grid;grid-template-columns: repeat(3,1fr); gap:12px;">
+        <div class="icon-btn">
+          <div style="font-size:.85rem;opacity:.85">Pemasukan</div>
+          <div id="sumIn" style="font-weight:800;margin-top:4px;">Rp 0</div>
+        </div>
+        <div class="icon-btn">
+          <div style="font-size:.85rem;opacity:.85">Pengeluaran</div>
+          <div id="sumOut" style="font-weight:800;margin-top:4px;">Rp 0</div>
+        </div>
+        <div class="icon-btn">
+          <div style="font-size:.85rem;opacity:.85">Saldo</div>
+          <div id="sumBal" style="font-weight:800;margin-top:4px;">Rp 0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Tambah Transaksi -->
+    <div class="card">
+      <h3>➕ Tambah Transaksi</h3>
+      <div style="display:grid; gap:10px;">
+        <select id="kasJenis">
+          <option value="Pemasukan">Pemasukan</option>
+          <option value="Pengeluaran">Pengeluaran</option>
+        </select>
+        <input id="kasJumlah" type="number" placeholder="Jumlah (Rp)"/>
+        <input id="kasKet" placeholder="Keterangan (misal: iuran warga, konsumsi kegiatan)"/>
+        <button id="btnAddKas" class="btn">Tambah</button>
+      </div>
+    </div>
+
+    <!-- Filter -->
+    <div class="card">
+      <h3>🔎 Filter</h3>
+      <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:10px;">
+        <input id="fStart" type="date" />
+        <input id="fEnd" type="date" />
+        <select id="fJenis">
+          <option value="SEMUA">Semua</option>
+          <option value="Pemasukan">Pemasukan</option>
+          <option value="Pengeluaran">Pengeluaran</option>
+        </select>
+        <button id="btnFilter" class="btn">Terapkan</button>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px;">
+        <button id="btnResetFilter" class="btn" style="max-width:200px;">Reset Filter</button>
+        <button id="btnExportCSV" class="btn" style="max-width:200px;">Export CSV</button>
+      </div>
+    </div>
+
+    <!-- Tabel Transaksi -->
+    <div class="card">
+      <h3>📋 Daftar Transaksi</h3>
+      <table class="table" id="kasTable">
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Jenis</th>
+            <th>Jumlah</th>
+            <th>Keterangan</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="5">Memuat...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Dock Navigasi -->
+  <div class="navbar">
+    <a href="../dashboard/warga.html"><button>🏠</button></a>
+    <a href="../dashboard/adminsuper.html"><button>👑</button></a>
+    <button data-section="kas">💰</button>
+    <a href="../login/login.html"><button>🚪</button></a>
+  </div>
+
+  <script type="module" src="../assets/js/bendahara.js"></script>
+</body>
+</html>
