@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masuk • Karang Taruna</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <div class="background-bokeh"></div>
+  <div id="loading">Memproses...</div>
+  <div class="container fade-in">
+    <h2>Masuk Akun</h2>
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Kata sandi">
+    <button id="loginBtn">Masuk</button>
+    <p class="note">Belum punya akun? <a href="register.html">Daftar di sini</a></p>
+  </div>
+  <script type="module">
+    import { auth, db } from "../config/firebase-config.js";
+    import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    const loading = document.getElementById('loading');
+    function toast(msg){const t=document.createElement('div');t.className='toast show';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),3000);}
+    document.getElementById('loginBtn').addEventListener('click', async ()=>{
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      if(!email||!password){toast('Isi email & sandi');return;}
+      loading.style.display='flex';
+      try{
+        const cred = await signInWithEmailAndPassword(auth,email,password);
+        const snap = await getDoc(doc(db,'profiles',cred.user.uid));
+        let role = (snap.exists()? snap.data().role : 'WARGA') || 'WARGA';
+        role = role.toUpperCase();
+        let target = '../dashboard/warga.html';
+        if(role==='ADMINSUPER') target = '../dashboard/adminsuper.html';
+        if(role==='KETUA') target = '../dashboard/ketua.html';
+        if(role==='BENDAHARA') target = '../dashboard/bendahara.html';
+        if(role==='SEKRETARIS') target = '../dashboard/sekretaris.html';
+        window.location.href = target;
+      }catch(e){toast('Gagal login: '+e.message);}
+      finally{loading.style.display='none';}
+    });
+  </script>
+</body>
+</html>
