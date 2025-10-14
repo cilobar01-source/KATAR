@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Bidang • Karang Taruna</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <div class="background-bokeh"></div>
+  <div id="loading">Memproses...</div>
+  <div class="toast" id="toast"></div>
+
+  <div class="dashboard">
+    <div class="card glass">
+      <h3>📚 Dashboard Bidang</h3>
+      <p style="opacity:0.8;">Kelola semua kegiatan Karang Taruna: Media, Olahraga, Pendidikan, dan UMKM.</p>
+      <div class="tab-menu">
+        <button data-tab="media" class="active">📸 Media</button>
+        <button data-tab="olahraga">⚽ Olahraga</button>
+        <button data-tab="pendidikan">🎓 Pendidikan</button>
+        <button data-tab="umkm">🏪 UMKM</button>
+      </div>
+    </div>
+
+    <!-- ================== MEDIA ================== -->
+    <section id="media" class="tab-content active">
+      <div class="card">
+        <h3>📰 Kegiatan Media</h3>
+        <input id="mediaJudul" placeholder="Judul berita" />
+        <textarea id="mediaIsi" placeholder="Isi berita atau caption"></textarea>
+        <input type="file" id="mediaFoto" accept="image/*" />
+        <button id="btnAddMedia" class="btn">Upload</button>
+      </div>
+      <div class="card" id="mediaList"><h3>Daftar Berita</h3></div>
+    </section>
+
+    <!-- ================== OLAHRAGA ================== -->
+    <section id="olahraga" class="tab-content">
+      <div class="card">
+        <h3>🏆 Kegiatan Olahraga</h3>
+        <input id="olahNama" placeholder="Nama kegiatan / event" />
+        <input id="olahTanggal" type="date" />
+        <input id="olahHasil" placeholder="Hasil / keterangan" />
+        <button id="btnAddOlah" class="btn">Tambah</button>
+      </div>
+      <div class="card" id="olahList"><h3>Daftar Kegiatan</h3></div>
+    </section>
+
+    <!-- ================== PENDIDIKAN ================== -->
+    <section id="pendidikan" class="tab-content">
+      <div class="card">
+        <h3>🎓 Kegiatan Pendidikan</h3>
+        <input id="pendJudul" placeholder="Nama pelatihan / seminar" />
+        <input id="pendTanggal" type="date" />
+        <textarea id="pendKeterangan" placeholder="Keterangan kegiatan"></textarea>
+        <button id="btnAddPend" class="btn">Tambah</button>
+      </div>
+      <div class="card" id="pendList"><h3>Daftar Pelatihan</h3></div>
+    </section>
+
+    <!-- ================== UMKM ================== -->
+    <section id="umkm" class="tab-content">
+      <div class="card">
+        <h3>🏪 Data UMKM</h3>
+        <input id="umkmNama" placeholder="Nama usaha" />
+        <input id="umkmBidang" placeholder="Bidang usaha (kuliner, jasa, dll)" />
+        <input id="umkmKontak" placeholder="Kontak / No. WA" />
+        <button id="btnAddUMKM" class="btn">Tambah</button>
+      </div>
+      <div class="card" id="umkmList"><h3>Daftar UMKM</h3></div>
+    </section>
+
+  </div>
+
+  <div class="navbar">
+    <a href="../dashboard/adminsuper.html"><button>👑</button></a>
+    <button class="active">📚</button>
+    <a href="../login/login.html"><button>🚪</button></a>
+  </div>
+
+  <script type="module" src="../assets/js/bidang.js"></script>
+</body>
+</html>
