@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar • Karang Taruna</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <div class="background-bokeh"></div>
+  <div id="loading">Memproses...</div>
+  <div class="container fade-in">
+    <h2>Buat Akun Baru</h2>
+    <input id="nama" type="text" placeholder="Nama lengkap">
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Kata sandi (min 6)">
+    <button id="registerBtn">Daftar</button>
+    <p class="note">Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
+  </div>
+  <script type="module">
+    import { auth, db } from "../config/firebase-config.js";
+    import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    const loading = document.getElementById('loading');
+    function toast(msg){const t=document.createElement('div');t.className='toast show';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),3000);}
+    document.getElementById('registerBtn').addEventListener('click', async ()=>{
+      const nama = document.getElementById('nama').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      if(!nama||!email||!password){toast('Lengkapi semua field');return;}
+      loading.style.display='flex';
+      try{
+        const cred = await createUserWithEmailAndPassword(auth,email,password);
+        await setDoc(doc(db,'profiles',cred.user.uid),{
+          nama,email,role:'WARGA',subrole:'default',created_at:serverTimestamp()
+        });
+        toast('Akun dibuat. Silakan login.'); window.location.href='login.html';
+      }catch(e){toast('Gagal daftar: '+e.message);}
+      finally{loading.style.display='none';}
+    });
+  </script>
+</body>
+</html>
