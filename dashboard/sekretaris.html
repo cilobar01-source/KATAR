@@ -1,4 +1,86 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Dashboard Sekretaris • Karang Taruna</title><link rel="stylesheet" href="../assets/css/style.css"></head>
-<body><div class="background-bokeh"></div><div class="container fade-in"><h2>Dashboard Sekretaris</h2><p class="note">Halaman ini masih placeholder.</p></div></body></html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sekretaris • Karang Taruna RT01/RW08</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <div class="background-bokeh"></div>
+  <div id="loading">Memproses...</div>
+  <div class="toast" id="toast"></div>
+
+  <div class="dashboard">
+
+    <div class="card glass">
+      <h3>📑 Dashboard Sekretaris</h3>
+      <p style="opacity:.8;">Kelola surat resmi, arsip dokumen, dan jadwal surat masuk / keluar.</p>
+    </div>
+
+    <!-- Upload surat -->
+    <div class="card glass">
+      <h3>📤 Upload Surat</h3>
+      <input id="suratJudul" placeholder="Judul surat (misal: Undangan Rapat RW)" />
+      <select id="suratJenis">
+        <option value="Masuk">Surat Masuk</option>
+        <option value="Keluar">Surat Keluar</option>
+      </select>
+      <input type="date" id="suratTanggal" />
+      <input type="file" id="suratFile" accept=".pdf" />
+      <button id="btnUploadSurat" class="btn">Upload Surat</button>
+    </div>
+
+    <!-- Filter -->
+    <div class="card glass">
+      <h3>🔎 Filter Surat</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+        <input type="date" id="filterStart" />
+        <input type="date" id="filterEnd" />
+        <select id="filterJenis">
+          <option value="SEMUA">Semua</option>
+          <option value="Masuk">Masuk</option>
+          <option value="Keluar">Keluar</option>
+        </select>
+      </div>
+      <button id="btnFilter" class="btn" style="margin-top:8px;">Terapkan Filter</button>
+    </div>
+
+    <!-- Daftar Surat -->
+    <div class="card glass">
+      <h3>📚 Arsip Surat</h3>
+      <table class="table" id="suratTable">
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Judul</th>
+            <th>Jenis</th>
+            <th>File</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="5">Memuat data...</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- Template Surat -->
+    <div class="card glass">
+      <h3>🧾 Template Surat</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+        <a href="../templates/surat-undangan.pdf" class="btn" download>📩 Surat Undangan</a>
+        <a href="../templates/surat-laporan.pdf" class="btn" download>📊 Laporan Kegiatan</a>
+        <a href="../templates/surat-permohonan.pdf" class="btn" download>📝 Surat Permohonan</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="navbar">
+    <a href="../dashboard/adminsuper.html"><button>👑</button></a>
+    <button class="active">📑</button>
+    <a href="../login/login.html"><button>🚪</button></a>
+  </div>
+
+  <script type="module" src="../assets/js/sekretaris.js"></script>
+</body>
+</html>
