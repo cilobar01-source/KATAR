@@ -1,4 +1,84 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Dashboard Ketua • Karang Taruna</title><link rel="stylesheet" href="../assets/css/style.css"></head>
-<body><div class="background-bokeh"></div><div class="container fade-in"><h2>Dashboard Ketua</h2><p class="note">Halaman ini masih placeholder.</p></div></body></html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ketua • Karang Taruna RT01/RW08</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="background-bokeh"></div>
+  <div id="loading">Memproses...</div>
+  <div class="toast" id="toast"></div>
+
+  <div class="dashboard">
+
+    <div class="card glass">
+      <h3>👑 Dashboard Ketua Karang Taruna</h3>
+      <p style="opacity:0.8;">Selamat datang! Lihat rekap kegiatan, pengumuman, dan laporan Karang Taruna RT01/RW08.</p>
+    </div>
+
+    <!-- Ringkasan singkat -->
+    <div class="card glass">
+      <h3>📊 Ringkasan Umum</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+        <div class="icon-btn">
+          <div style="font-size:.9rem;opacity:.8;">Kas</div>
+          <div id="sumKas" style="font-weight:700;">Rp 0</div>
+        </div>
+        <div class="icon-btn">
+          <div style="font-size:.9rem;opacity:.8;">Berita</div>
+          <div id="sumBerita" style="font-weight:700;">0</div>
+        </div>
+        <div class="icon-btn">
+          <div style="font-size:.9rem;opacity:.8;">UMKM</div>
+          <div id="sumUMKM" style="font-weight:700;">0</div>
+        </div>
+      </div>
+      <canvas id="chartKetua" height="160" style="margin-top:16px;"></canvas>
+    </div>
+
+    <!-- Tambah Agenda -->
+    <div class="card glass">
+      <h3>🗓️ Tambah Agenda Kegiatan</h3>
+      <input id="agendaJudul" placeholder="Judul kegiatan" />
+      <input id="agendaTanggal" type="date" />
+      <textarea id="agendaDeskripsi" placeholder="Deskripsi kegiatan atau catatan singkat"></textarea>
+      <button id="btnAddAgenda" class="btn">Tambah Agenda</button>
+    </div>
+
+    <!-- Daftar Agenda -->
+    <div class="card glass">
+      <h3>📅 Daftar Agenda</h3>
+      <table class="table" id="agendaTable">
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Judul</th>
+            <th>Deskripsi</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="4">Memuat data...</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- Pengumuman -->
+    <div class="card glass">
+      <h3>📢 Pengumuman Terbaru</h3>
+      <div id="pengumumanList"><p>Belum ada pengumuman.</p></div>
+    </div>
+
+  </div>
+
+  <!-- Dock Navigasi -->
+  <div class="navbar">
+    <a href="../dashboard/adminsuper.html"><button>👑</button></a>
+    <button class="active">📋</button>
+    <a href="../login/login.html"><button>🚪</button></a>
+  </div>
+
+  <script type="module" src="../assets/js/ketua.js"></script>
+</body>
+</html>
