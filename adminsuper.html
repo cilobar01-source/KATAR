@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adminsuper • Karang Taruna</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <div class="background-bokeh"></div>
+  <div id="loading">Memproses...</div>
+  <div class="toast" id="toast"></div>
+
+  <div class="dashboard">
+    <div class="card">
+      <h3>👑 Adminsuper — Akses Semua Role</h3>
+      <div class="icon-grid">
+        <button class="icon-btn" data-section="berita"><img src="../assets/icons/news.svg"><span>Berita</span></button>
+        <button class="icon-btn" data-section="kas"><img src="../assets/icons/finance.svg"><span>Kas & Iuran</span></button>
+        <button class="icon-btn" data-section="surat"><img src="../assets/icons/letter.svg"><span>Surat</span></button>
+        <button class="icon-btn" data-section="umkm"><img src="../assets/icons/home.svg"><span>UMKM</span></button>
+        <button class="icon-btn" data-section="users"><img src="../assets/icons/user.svg"><span>User & Role</span></button>
+        <button class="icon-btn" data-section="media"><img src="../assets/icons/news.svg"><span>Media</span></button>
+        <button class="icon-btn" data-section="pengaturan"><img src="../assets/icons/settings.svg"><span>Pengaturan</span></button>
+        <a class="icon-btn" href="../login/login.html" style="text-decoration:none;"><img src="../assets/icons/logout.svg"><span>Keluar</span></a>
+      </div>
+    </div>
+
+    <!-- BERITA -->
+    <div class="card" id="section-berita" style="display:none;">
+      <h3>📰 Kelola Berita</h3>
+      <input id="newsTitle" placeholder="Judul berita">
+      <textarea id="newsBody" placeholder="Isi berita"></textarea>
+      <button id="btnAddNews" class="btn">Tambah Berita</button>
+      <table class="table" id="newsTable">
+        <thead><tr><th>Judul</td><th>Tanggal</th><th>Aksi</th></tr></thead>
+        <tbody><tr><td colspan="3">Memuat...</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- KAS -->
+    <div class="card" id="section-kas" style="display:none;">
+      <h3>💰 Kas & Iuran</h3>
+      <div style="display:grid;gap:8px;">
+        <select id="kasJenis">
+          <option value="Pemasukan">Pemasukan</option>
+          <option value="Pengeluaran">Pengeluaran</option>
+        </select>
+        <input id="kasJumlah" type="number" placeholder="Jumlah (Rp)">
+        <input id="kasKet" placeholder="Keterangan">
+        <button id="btnAddKas" class="btn">Tambah Transaksi</button>
+      </div>
+      <table class="table" id="kasTable">
+        <thead><tr><th>Jenis</th><th>Jumlah</th><th>Keterangan</th><th>Tanggal</th><th>Aksi</th></tr></thead>
+        <tbody><tr><td colspan="5">Memuat...</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- SURAT -->
+    <div class="card" id="section-surat" style="display:none;">
+      <h3>📜 Surat</h3>
+      <input id="suratNama" placeholder="Nama surat (contoh: Undangan Kerja Bakti)">
+      <input id="suratFile" type="file" accept="application/pdf">
+      <button id="btnUploadSurat" class="btn">Upload Surat (PDF)</button>
+      <table class="table" id="suratTable">
+        <thead><tr><th>Nama</th><th>File</th><th>Tanggal</th><th>Aksi</th></tr></thead>
+        <tbody><tr><td colspan="4">Memuat...</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- UMKM -->
+    <div class="card" id="section-umkm" style="display:none;">
+      <h3>🏪 Data UMKM</h3>
+      <input id="umkmNama" placeholder="Nama Usaha">
+      <input id="umkmBidang" placeholder="Bidang (makanan, jasa, dsb)">
+      <input id="umkmKontak" placeholder="Kontak (WA/IG)">
+      <input id="umkmPemilik" placeholder="Nama Pemilik">
+      <button id="btnAddUMKM" class="btn">Tambah UMKM</button>
+      <table class="table" id="umkmTable">
+        <thead><tr><th>Usaha</th><th>Bidang</th><th>Pemilik</th><th>Kontak</th><th>Aksi</th></tr></thead>
+        <tbody><tr><td colspan="5">Memuat...</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- USERS -->
+    <div class="card" id="section-users" style="display:none;">
+      <h3>👥 Manajemen User & Role</h3>
+      <table class="table" id="usersTable">
+        <thead><tr><th>Nama</th><th>Email</th><th>Role</th><th>Subrole</th><th>Aksi</th></tr></thead>
+        <tbody><tr><td colspan="5">Memuat...</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- PENGATURAN -->
+    <div class="card" id="section-pengaturan" style="display:none;">
+      <h3>⚙️ Pengaturan RT/RW</h3>
+      <input id="setNamaRT" placeholder="Nama RT/RW">
+      <input id="setAlamat" placeholder="Alamat Lengkap">
+      <input id="setWA" placeholder="Nomor WA Admin">
+      <input id="setLogo" type="file" accept="image/*">
+      <button id="btnSaveSettings" class="btn">Simpan Pengaturan</button>
+    </div>
+
+    <div class="card" id="section-media" style="display:none;">
+      <h3>🖼️ Media</h3>
+      <p class="note">Area untuk dokumentasi kegiatan. (versi demo)</p>
+    </div>
+  </div>
+
+  <div class="navbar">
+    <button data-section="beranda">🏠</button>
+    <button data-section="berita">📰</button>
+    <button data-section="users">👥</button>
+    <button data-section="kas">💰</button>
+    <button data-section="surat">📜</button>
+    <button data-section="umkm">🏪</button>
+    <button data-section="pengaturan">⚙️</button>
+  </div>
+
+  <script type="module" src="../assets/js/adminsuper.js"></script>
+</body>
+</html>
