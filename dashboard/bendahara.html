@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bendahara • Karang Taruna</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="background-bokeh"></div>
@@ -13,7 +14,7 @@
 
   <div class="dashboard">
 
-    <!-- Header & Ringkasan Saldo -->
+    <!-- Ringkasan -->
     <div class="card">
       <h3>💰 Dashboard Bendahara</h3>
       <div style="display:grid;grid-template-columns: repeat(3,1fr); gap:12px;">
@@ -40,8 +41,11 @@
           <option value="Pemasukan">Pemasukan</option>
           <option value="Pengeluaran">Pengeluaran</option>
         </select>
-        <input id="kasJumlah" type="number" placeholder="Jumlah (Rp)"/>
-        <input id="kasKet" placeholder="Keterangan (misal: iuran warga, konsumsi kegiatan)"/>
+        <input id="kasJumlah" type="number" placeholder="Jumlah (Rp)" />
+        <input id="kasKet" placeholder="Keterangan (misal: iuran warga, konsumsi kegiatan)" />
+        <input id="kasKategori" placeholder="Kategori (opsional, misal: Donasi, 17an, Operasional)" />
+        <label style="text-align:left; font-size:.9rem;">Tanggal (boleh dikosongkan untuk otomatis):</label>
+        <input id="kasTanggalManual" type="date" />
         <button id="btnAddKas" class="btn">Tambah</button>
       </div>
     </div>
@@ -65,6 +69,13 @@
       </div>
     </div>
 
+    <!-- Rekap & Grafik -->
+    <div class="card">
+      <h3>📊 Rekap Bulanan</h3>
+      <canvas id="kasChart" height="160"></canvas>
+      <div id="rekapBulanan" style="margin-top:14px;text-align:left;font-size:.9rem;"></div>
+    </div>
+
     <!-- Tabel Transaksi -->
     <div class="card">
       <h3>📋 Daftar Transaksi</h3>
@@ -73,21 +84,23 @@
           <tr>
             <th>Tanggal</th>
             <th>Jenis</th>
+            <th>Kategori</th>
             <th>Jumlah</th>
             <th>Keterangan</th>
             <th>Aksi</th>
           </tr>
         </thead>
-        <tbody><tr><td colspan="5">Memuat...</td></tr></tbody>
+        <tbody><tr><td colspan="6">Memuat...</td></tr></tbody>
       </table>
     </div>
+
   </div>
 
-  <!-- Dock Navigasi -->
+  <!-- Navigasi Dock -->
   <div class="navbar">
     <a href="../dashboard/warga.html"><button>🏠</button></a>
     <a href="../dashboard/adminsuper.html"><button>👑</button></a>
-    <button data-section="kas">💰</button>
+    <button>💰</button>
     <a href="../login/login.html"><button>🚪</button></a>
   </div>
 
